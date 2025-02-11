@@ -1,10 +1,10 @@
 package tn.esprit.tpfoyer.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -17,6 +17,13 @@ public class Bloc {
     private Long idBloc;
     private String nomBloc;
     private long capaciteBloc;
+
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Foyer foyer;
+
+    @OneToMany(mappedBy = "bloc")
+    private Set<Chambre> chambres=new HashSet<Chambre>();
 
 
 }
